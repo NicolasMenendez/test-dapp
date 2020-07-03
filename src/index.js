@@ -14,14 +14,10 @@ const isMetaMaskInstalled = () => {
 }
 
 // Dapp Status Section
-const networkDiv = document.getElementById('network')
-const chainIdDiv = document.getElementById('chainId')
 const accountsDiv = document.getElementById('accounts')
 
 // Basic Actions Section
 const onboardButton = document.getElementById('connectButton')
-const getAccountsButton = document.getElementById('getAccounts')
-const getAccountsResults = document.getElementById('getAccountsResult')
 
 // Encrypt / Decrypt Section
 const getEncryptionKeyButton = document.getElementById('getEncryptionKeyButton')
@@ -42,7 +38,6 @@ const initialize = async () => {
   }
 
   let accounts
-  let piggybankContract
   let accountButtonsInitialized = false
 
   const accountButtons = [
@@ -200,12 +195,3 @@ const initialize = async () => {
 }
 
 window.addEventListener('DOMContentLoaded', initialize)
-
-function getPermissionsDisplayString (permissionsArray) {
-  if (permissionsArray.length === 0) {
-    return 'No permissions found.'
-  }
-  const permissionNames = permissionsArray.map((perm) => perm.parentCapability)
-  return permissionNames.reduce((acc, name) => `${acc}${name}, `, '').replace(/, $/u, '')
-}
-
