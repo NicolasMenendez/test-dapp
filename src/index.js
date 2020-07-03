@@ -43,7 +43,6 @@ const initialize = async () => {
   const accountButtons = [
     getEncryptionKeyButton,
     encryptButton,
-    decryptButton,
   ]
 
   const isMetaMaskConnected = () => accounts && accounts.length > 0
@@ -113,12 +112,12 @@ const initialize = async () => {
 
     getEncryptionKeyButton.onclick = async () => {
       try {
-        encryptionKeyDisplay.innerText = await ethereum.request({
+        encryptionKeyDisplay.value = await ethereum.request({
           method: 'eth_getEncryptionPublicKey',
           params: [accounts[0]],
         })
       } catch (error) {
-        encryptionKeyDisplay.innerText = `Error: ${error.message}`
+        encryptionKeyDisplay.value = `Error: ${error.message}`
         encryptButton.disabled = true
         decryptButton.disabled = true
       }
@@ -141,15 +140,13 @@ const initialize = async () => {
       try {
         ciphertextDisplay.innerText = web3.toHex(JSON.stringify(
           sigUtil.encrypt(
-            encryptionKeyDisplay.innerText,
+            encryptionKeyDisplay.value,
             { 'data': encryptMessageInput.value },
             'x25519-xsalsa20-poly1305',
           ),
         ))
-        decryptButton.disabled = false
       } catch (error) {
         ciphertextDisplay.innerText = `Error: ${error.message}`
-        decryptButton.disabled = true
       }
     }
 

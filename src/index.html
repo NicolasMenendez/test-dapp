@@ -104,13 +104,18 @@
                 <button
                   class="btn btn-primary btn-lg btn-block mb-3"
                   id="decryptButton"
-                  disabled
                 >
                   Decrypt
                 </button>
 
                 <p class="info-text alert alert-secondary">
-                  Encryption key: <span id="encryptionKeyDisplay"></span>
+                  Encryption key:
+                  <textarea
+                    id="encryptionKeyDisplay"
+                    class="form-control"
+                    rows="4"
+                    cols="150"
+                  ></textarea>
                 </p>
 
                 <p class="info-text text-truncate alert alert-secondary">
